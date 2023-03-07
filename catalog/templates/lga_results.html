@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Summed Total Result of all Polling Units under any LGA</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;">
+    <h1 style="text-align: center;">Summed Total Result of all Polling Units under any LGA</h1>
+    <form method="get" style="display: flex; justify-content: center;">
+        <label for="lga" style="margin-right: 10px;">Select LGA:</label>
+        <select name="lga" id="lga" style="padding: 10px; border-radius: 5px;">
+            <option value="">-- Select LGA --</option>
+            {% for lga in lgas %}
+            <option value="{{ lga.lga_id }}" {% if selected_lga in lga.lga_id %}selected{% endif %}>{{ lga.lga_name }}
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit"
+            style="padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; margin-left: 10px;">Submit</button>
+    </form>
+    {% if total_result %}
+    <p style="text-align: center; margin-top: 20px;">The summed total result of all polling units under {{ lga_name }}
+        is {{ total_result }}</p>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'home' %}" style="color: #007bff; text-decoration: none;">Go to Home Page</a>
+    </div>
+</body>
+
+</html>
